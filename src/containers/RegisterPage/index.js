@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import Layout from '../../components/Layout'
 import Card from "../../components/UI/Card"
 import "./style.css"
+import { signup } from '../../actions'
+import { useDispatch } from 'react-redux'
 
 /**
 * @author
@@ -14,14 +16,24 @@ const RegisterPage = (props) => {
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
 
-  
+
+  const registerUser = (e) => {
+    
+    e.preventDefault();
+    const user = {
+      firstName, lastName, email, password
+    }
+    
+    dispatch(signup(user))
+  }
   
   return(
     <Layout>
     <div className="registerContainer">
     <Card>
-    <form>
+    <form onSubmit={registerUser}>
     
     <h3>Sign Up</h3>
 
