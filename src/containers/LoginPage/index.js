@@ -50,18 +50,28 @@ const LoginPage = (props) => {
     <div className="loginContainer">
     <Card>
     <form onSubmit={userLogin}>
+    <h3>Login</h3>
+
 
       <input type="email" 
       value={email} 
       name="email"
       onChange={(e)=>setEmail(e.target.value)}
-      placeholder="Email"/>
+      placeholder="Email"
+      className="email"
+      />
+
+      <br/>
 
       <input type="password" 
       value={password} 
       name="password"
       onChange={(e)=>setPassword(e.target.value)}
-      placeholder="Password"/>
+      placeholder="Password"
+      className="pass"
+      />
+
+      <br/>
 
       <div>
       <button>Login</button>

@@ -45,13 +45,17 @@ const RegisterPage = (props) => {
     value={firstName} 
     name="firstName"
     onChange={(e)=>setFirstName(e.target.value)}
-    placeholder="First Name"/>
+    placeholder="First Name"
+    className="email"
+    />
 
     <input type="text" 
     value={lastName} 
     name="lastName"
     onChange={(e)=>setLastName(e.target.value)}
-    placeholder="Last Name"/>
+    placeholder="Last Name"
+    className="email"
+    />
 
 
 
@@ -59,13 +63,17 @@ const RegisterPage = (props) => {
       value={email} 
       name="email"
       onChange={(e)=>setEmail(e.target.value)}
-      placeholder="Email"/>
+      placeholder="Email"
+      className="email"
+      />
 
       <input type="password" 
       value={password} 
       name="password"
       onChange={(e)=>setPassword(e.target.value)}
-      placeholder="Password"/>
+      placeholder="Password"
+      className="email"
+      />
 
       <div>
       <button>Sign Up</button>

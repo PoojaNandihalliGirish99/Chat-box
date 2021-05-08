@@ -1,5 +1,26 @@
 .loginContainer{
     width: 400px;
-    position: relative;
+    position:relative;
     margin: 50px auto;
+    vertical-align: middle;
+    text-align: center;
+
+}
+.email{
+    width: 350px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.pass{
+    width: 350px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+button{
+    padding: 10px 20px;
 }

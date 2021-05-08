@@ -21,10 +21,10 @@
     position: fixed;
     width: 70%;
     height: 40px;
-    background: #e2e0e0;
+    background: #FDE047;
     text-align: center;
     line-height: 40px;
-    color: #000;
+    color: #fff;
     font-weight: bold;
     font-family: sans-serif;
 }
@@ -68,7 +68,7 @@
 }
 
 .messageStyle{
-    background: skyblue;
+    background: #FEF08A;
     display: inline-block;
     padding: 5px 10px;
     border-radius: 10px;
@@ -82,4 +82,22 @@
     overflow-x: hidden;
     position: relative;
     top: 40px;
+}
+
+.onlineStatus{
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: #16e316;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 0 #16e316;
+}
+.onlineStatus.off{
+    background: green;
+    box-shadow: 0 0 0 0;
+}
+
+button{
+    background-color: #FDE047;
+    border-radius: 10%;
 }

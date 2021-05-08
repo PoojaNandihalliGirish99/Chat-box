@@ -10,6 +10,7 @@ const Layout = (props) => {
   return(
     <div>
     <Header />
+    <hr></hr>
     {props.children}
     </div>
    )

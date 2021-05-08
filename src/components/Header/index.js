@@ -21,7 +21,7 @@ const Header = (props) => {
   return(
     <header className="header">
         <div style={{display: 'flex'}}>
-          <div className="logo">Web Messenger</div>
+          <div className="logo">Chat-Box</div>
             
           {
             !auth.authenticated ?
@@ -38,7 +38,7 @@ const Header = (props) => {
         </div>
           <div style={{margin: '20px 0', color: '#fff', fontWeight: 'bold'}}>
 
-          {auth.authenticated ? `Hi ${auth.firstName} ${auth.lastName}`: ``}
+          {auth.authenticated ? `Hi, ${auth.firstName} ${auth.lastName}`: ``}
           
           </div>
         
@@ -49,7 +49,7 @@ const Header = (props) => {
             auth.authenticated ? 
             <li>
                 <Link to={'#'} onClick={()=>{
-                  dispatch(logout())
+                  dispatch(logout(auth.uid))
                 }}>Logout</Link>
             </li> : null
           }

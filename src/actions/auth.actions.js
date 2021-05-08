@@ -19,7 +19,9 @@ export const signup = (user) => {
                 displayName: name
             }).then(()=>{
                 //if you are inside here...it means displayname it is updated
-                db.collection('users').add({
+                db.collection('users')
+                .doc(data.user.uid)
+                .set({
                     firstName: user.firstName,
                     lastName: user.lastName,
                     uid: data.user.uid,
@@ -61,16 +63,25 @@ export const signin = (user) => {
         dispatch({type: `${authConstant.USER_LOGIN}_REQUEST`});
         firebase.auth().signInWithEmailAndPassword(user.email, user.password)
         .then((data) => {
-            console.log(data)
-            const name = data.user.displayName.split(" ");
-            const firstName = name[0];
-            const lastName = name[1];
-            const loggedUser = {
-                firstName,
-                lastName,
-                email:data.user.email,
-                uid: data.user.uid,
-            }
+            console.log(data);
+
+            const db = firebase.firestore();
+            db.collection('users')
+            .doc(data.user.uid)
+            .update({
+                isOnline: true
+            })
+            .then(()=>{
+
+                const name = data.user.displayName.split(" ");
+                const firstName = name[0];
+                const lastName = name[1];
+                const loggedUser = {
+                    firstName,
+                    lastName,
+                    email:data.user.email,
+                    uid: data.user.uid,
+                }
 
             localStorage.setItem('user', JSON.stringify(loggedUser));
 
@@ -78,6 +89,13 @@ export const signin = (user) => {
                 type: `${authConstant.USER_LOGIN}_SUCCESS`,
                 payload:{user: loggedUser}
             })
+
+            })
+            .catch(error => {
+                console.log(error);
+            })
+
+            
         
         }).catch(error => {
             console.log(error);
@@ -110,25 +128,41 @@ export const isLoggedInUser = () => {
     }
 }
 
-export const logout = () => {
+export const logout = (uid) => {
     return async dispatch => {
         dispatch({
             type: `${authConstant.USER_LOGOUT}_REQUEST`
         })
         
-        firebase.auth().signOut()
+        const db = firebase.firestore();
+        db.collection('users')
+        .doc(uid)
+        .update({
+            isOnline:false
+        })
         .then(()=>{
-            localStorage.clear();
-            dispatch({type:`${authConstant.USER_LOGOUT}_SUCCESS`})
+
+            firebase.auth().signOut()
+            .then(()=>{
+                localStorage.clear();
+                dispatch({type:`${authConstant.USER_LOGOUT}_SUCCESS`})
+    
+            })
+            .catch((error)=>{
+                console.log(error);
+                dispatch({type:`${authConstant.USER_LOGOUT}_FAILURE`,
+                payload:{error}
+            })
+    
+            })
 
         })
-        .catch((error)=>{
+        .catch(error => {
             console.log(error);
-            dispatch({type:`${authConstant.USER_LOGOUT}_FAILURE`,
-            payload:{error}
         })
 
-        })
+
+       
 
     }
 }
