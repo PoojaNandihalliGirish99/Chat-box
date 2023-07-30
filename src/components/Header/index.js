@@ -26,7 +26,7 @@ const Header = (props) => {
           {
             !auth.authenticated ?
             <ul className="leftMenu">
-              <li><NavLink to={'/login'}>Login</NavLink></li>
+              <li><NavLink to={'/login'}>Login here</NavLink></li>
               <li><NavLink to={'/signup'}>Sign up</NavLink></li>
             </ul> : null
 
